@@ -34,7 +34,7 @@ module.exports.addNewProduct = async(req, res)=>{
 
     await product.save();
     req.flash('success', 'new product added');
-    res.redirect('/');
+    res.redirect(`/product/${product._id}`);
 }
 
 
@@ -73,7 +73,7 @@ module.exports.updateProduct = async(req, res) => {
 
 // show all products 
 
-module.exports.renderAllProducts = async(req, res)=>{
+module.exports.showAllProducts = async(req, res)=>{
     const products = await Product.find({})
     res.render('home', {products, title: 'Best Products'});
 }

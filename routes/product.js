@@ -11,7 +11,7 @@ router.post('/', isLoggedIn, catchAsync(product.addNewProduct));
 router.route('/add')
       .get(isLoggedIn, product.renderAddProductForm);
 
-router.get('/allproducts', isLoggedIn, product.renderAllProducts);
+router.get('/allproducts', isLoggedIn, product.showAllProducts);
 
 
 router.route('/:id')

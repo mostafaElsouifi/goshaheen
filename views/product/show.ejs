@@ -4,7 +4,7 @@
 
 <div class="container">
     <section class="row my-5 d-flex justify-content-between">
-        <div class="col-4">
+        <div class="col-md-4 col-12">
             <div id="productImagesCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                   <% product.images.forEach((img, i) => {%>
@@ -23,7 +23,7 @@
                 </button>
               </div>
         </div>
-        <div class="col-6 text-center mw-50">
+        <div class="col-md-6 col-12 text-center mw-50">
           <div>
             <p class="product-name fw-bolder"><%= product.name %></p>
           </div>
@@ -40,7 +40,7 @@
             <div class="reviews-numbers">
                 <span><%= product.reviews.text.length %> reviews</span>
             </div>
-            <a class="btn button <%=product.store%>">Buy From <%= product.store %></a>
+            <a href="<%= product.affilliateLink%>" class="btn button <%=product.store%>">Buy From <%= product.store %></a>
         </div>
       </section>
 
@@ -78,8 +78,8 @@
             </div>
           
             </div>
-            <div class="col-4">
-              <div id="reviewsImagesCarousel" class="carousel slide w-50" data-bs-ride="carousel">
+            <div class="col-md-4 col-6">
+              <div id="reviewsImagesCarousel" class="carousel slide " data-bs-ride="carousel">
                 <div class="carousel-inner">
                   <% product.reviews.images.forEach((img, i) => {%>
                     <div class="carousel-item <%= i === 0 ? 'active': '' %>">
@@ -101,10 +101,10 @@
             </div>
             </section>
 
-
+ 
     <section class="row my-5 d-flex justify-content-around">
         <h4 class="bg-secondary p-2 text-white"> Product's Video</h4>
-        <div class="col-6">
+        <div class="col-md-6 col-12">
           <%- product.video %>
         </div>
         <% if(currentUser){%>
