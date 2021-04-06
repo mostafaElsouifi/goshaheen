@@ -12,7 +12,7 @@ mongoose.connect('mongodb://localhost:27017/goshaheen', {useNewUrlParser: true, 
 
 const seedDb = async()=>{
     const product = {
-        name: '12334 tvtttbtbt   audi',
+        name: 'headphone lorem1',
         category: 'Electronics Accessories/Computer Accessories/PC Audio/Gaming Headsets',
         price:157.40,
         images:[
