@@ -21,8 +21,8 @@ const userRouter = require('./routes/user');
 const searchRouter = require('./routes/search');
 const User = require('./models/user');
 const MongoDBStore = require('connect-mongo')(session);
-const dbUrl = 'mongodb://localhost:27017/goshaheen';
-// process.env.DB_URL || 
+
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/goshaheen';
 // database connection /////////////////////////////////////////////
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
