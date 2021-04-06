@@ -1,0 +1,29 @@
+p.product-name{
+    font-size:1.5rem;
+}
+.product-price{
+    font-size:1.9rem;
+    color: #56ab2f;  /* fallback for old browsers */
+    color: -webkit-linear-gradient(to right, #a8e063, #56ab2f);  /* Chrome 10-25, Safari 5.1-6 */
+    color: linear-gradient(to right, #a8e063, #56ab2f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+   font-weight:700
+}
+a.button{
+    color:white;
+    font-weight:700;
+    font-size:1.2rem;
+}
+a.button:hover{
+    color:white;
+    font-weight:800;
+}
+.list-group-item{
+    font-size:1.2rem;
+    font-weight:600;
+}
+.review-text{
+    font-size:1.2rem;
+    background-color:#F6EEEE;
+    font-weight:500;
+    padding:5px;
+}

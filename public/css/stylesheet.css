@@ -1,0 +1,77 @@
+/*******************************************************/
+/******** Navbar****************************************/
+.navbar{
+    background: #43C6AC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.brand{
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size:2rem;
+    font-weight:700;
+}
+.navbar-toggler-icon:focus{
+    border: none;
+}
+#search-input{
+    width:25rem;
+}
+.search-btn{
+    width:6rem;
+}
+
+/*******************************************************/
+/******** footer****************************************/
+.footer{
+    background: #43C6AC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    color:white
+}
+ 
+/**************************************************/
+/***************body *********************************/
+
+.card{
+    font-size:1rem;
+}
+.product-rating span{
+    font-size:10px;
+}
+.product-reviews{
+    font-size:15px;
+}
+
+.product-price{
+    font-size:1.4rem;
+    color: #56ab2f;  /* fallback for old browsers */
+    color: -webkit-linear-gradient(to right, #a8e063, #56ab2f);  /* Chrome 10-25, Safari 5.1-6 */
+    color: linear-gradient(to right, #a8e063, #56ab2f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+   font-weight:700
+}
+
+
+
+
+
+
+/******************************************************************************************/
+/******************************************************************************************/
+/******************************************************************************************/
+/*class lists*/
+.shoppe{
+    background: #f12711;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #f5af19, #f12711);  /* Chrome 10-25, Safari 5.1-6 */
+     background: linear-gradient(to right, #f5af19, #f12711); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.lazada{
+    background: #12c2e9;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+
