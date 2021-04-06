@@ -36,7 +36,7 @@ db.once('open', function() {
   console.log('database connected');
 });
 ////////////////////////////////////////////////////////////////////
-const secret = process.env.SECRET || 'goshaheen2021',
+const secret = process.env.SECRET || 'goshaheen2021';
 const store = new MongoDBStore({
     url: dbUrl,
     secret,
