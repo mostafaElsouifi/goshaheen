@@ -16,8 +16,7 @@ router.route('/login')
 
 
 
-//controlpanel
-router.get('/controlpanel', isLoggedIn, user.renderControlPanelPage);
+
 
 
 

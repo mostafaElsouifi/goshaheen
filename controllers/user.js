@@ -45,11 +45,6 @@ module.exports.logout = (req, res)=>{
 
 
 
-//control panel 
-module.exports.renderControlPanelPage = (req, res)=>{
-    res.render('user/controlpanel', {title: 'control panel'})
-}
-
 
 
 

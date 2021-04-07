@@ -19,6 +19,7 @@ const homeRouter = require('./routes/home');
 const productRouter = require('./routes/product');
 const userRouter = require('./routes/user');
 const searchRouter = require('./routes/search');
+const controlPanelRouter = require('./routes/controlpanel');
 const User = require('./models/user');
 const MongoDBStore = require('connect-mongo')(session);
 
@@ -129,6 +130,7 @@ app.use('/', homeRouter);
 app.use('/product', productRouter);
 app.use('/', userRouter);
 app.use('/search', searchRouter);
+app.use('/controlpanel', controlPanelRouter)
 
 
 
@@ -141,6 +143,7 @@ app.use((err, req, res, next)=>{
     if(!err.message) err.message = 'something went wrong';
     res.status(statusCode).render('error', { err, title: err.message }) 
 })
+// the port is be sitten by heroku if we are in development mode we will use 3000
 const port = process.env.PORT || 3000
 app.listen(port, ()=>{
     console.log(`server listening to port ${port}`)

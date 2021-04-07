@@ -108,10 +108,10 @@
           <%- product.video %>
         </div>
         <% if(currentUser){%>
-        <form action="/product/<%=product._id%>?_method=DELETE" method="POST" class="m-3">
+        <form action="/controlpanel/product/<%=product._id%>?_method=DELETE" method="POST" class="m-3">
           <button class="btn btn-danger btn-lg">Delete</button>
         </form>
-          <a href="/product/<%=product._id%>/edit" class="btn btn-warning">Edit</a>
+          <a href="/controlpanel/product/<%=product._id%>/edit" class="btn btn-warning">Edit</a>
         <% } %>
        
     </section>

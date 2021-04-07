@@ -1,23 +1,24 @@
-<% layout('/layouts/boilerplate') -%>
+<% layout('./layouts/showProductBoilerPlate') -%>
+
 
 <h1 class="text-center">Add new Product</h1>
-<form action="/product" method="POST" class="m-3">
+<form action="/controlpanel/product/<%= product._id %>?_method=PUT" method="POST" class="m-3">
     <div class="row mb-3">
       <label for="name" class="col-sm-2 col-form-label">name: </label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="name" name="name">
+        <input type="text" class="form-control" id="name" name="name" value="<%= product.name %>">
       </div>
     </div>
     <div class="row mb-3">
         <label for="category" class="col-sm-2 col-form-label">category: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="category" name="category">
+          <input type="text" class="form-control" id="category" name="category" value="<%= product.category%>">
         </div>
       </div>
       <div class="row mb-3">
         <label for="price" class="col-sm-2 col-form-label">price: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="price" name="price">
+          <input type="text" class="form-control" id="price" name="price" value="<%=product.price%>">
         </div>
       </div>
 
@@ -25,31 +26,31 @@
       <div class="row mb-3">
         <label for="image1" class="col-sm-2 col-form-label">Image1: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="image1" name="images[]">
+          <input type="text" class="form-control" id="image1" name="images[]" value="<%=product.images[0] || ''%>">
         </div>
       </div>
       <div class="row mb-3">
         <label for="image2" class="col-sm-2 col-form-label">Image2: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="image2" name="images[]">
+          <input type="text" class="form-control" id="image2" name="images[]" value="<%=product.images[1] || '' %>">
         </div>
       </div>
       <div class="row mb-3">
         <label for="image3" class="col-sm-2 col-form-label">Image3: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="image3" name="images[]">
+          <input type="text" class="form-control" id="image3" name="images[]" value="<%=product.images[2] || ''%>">
         </div>
       </div>
       <div class="row mb-3">
         <label for="image4" class="col-sm-2 col-form-label">Image4: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="image4" name="images[]">
+          <input type="text" class="form-control" id="image4" name="images[]" value="<%=product.images[3] || ''%>">
         </div>
       </div>
       <div class="row mb-3">
         <label for="image5" class="col-sm-2 col-form-label">Image5: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="image5" name="images[]">
+          <input type="text" class="form-control" id="image5" name="images[]" value="<%=product.images[4] || ''%>">
         </div>
       </div>
 
@@ -57,7 +58,7 @@
       <div class="row mb-3">
         <label for="details" class="col-sm-2 col-form-label">product details : </label>
         <div class="col-sm-10">
-          <textarea class="form-control" id="details" name="details" rows="7"> </textarea>
+          <textarea class="form-control" id="details" name="details" rows="7"> <%= product.details.join('\n') %></textarea>
         </div>
       </div>
 
@@ -65,13 +66,13 @@
       <div class="row mb-3">
         <label for="rating-number" class="col-sm-2 col-form-label">rating number: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control"  id="rating-number" name="rating[]">
+          <input type="text" class="form-control"  id="rating-number" name="rating[]" value="<%= product.rating.number %>">
         </div>
       </div>
       <div class="row mb-3">
         <label for="rating-stars" class="col-sm-2 col-form-label">rating stars: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control"  id="rating-stars" name="rating[]">
+          <input type="text" class="form-control"  id="rating-stars" name="rating[]" value="<%= product.rating.stars %>">
         </div>
       </div>
       
@@ -79,7 +80,7 @@
       <div class="row mb-3">
         <label for="video" class="col-sm-2 col-form-label">video: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="video" name="video">
+          <input type="text" class="form-control" id="video" name="video" value="<%=product.video%>">
         </div>
       </div>
 
@@ -88,14 +89,14 @@
       <div class="row mb-3">
         <label for="store" class="col-sm-2 col-form-label">store: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="store" name="store">
+          <input type="text" class="form-control" id="store" name="store" value="<%=product.store%>">
         </div>
       </div>
       <!--affilliate link -->
       <div class="row mb-3">
         <label for="affilliateLink" class="col-sm-2 col-form-label">affilliate Link: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="affilliateLink"  name="affilliateLink">
+          <input type="text" class="form-control" id="affilliateLink"  name="affilliateLink" value="<%product.affilliateLink%>">
         </div>
       </div>
 
@@ -104,31 +105,31 @@
       <div class="row mb-3">
         <label for="reviewimage1" class="col-sm-2 col-form-label">reviewImage1: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="reviewimage1" name="reviewImages[]">
+          <input type="text" class="form-control" id="reviewimage1" name="reviewImages[]" value="<%= product.reviews.images[0] || '' %>">
         </div>
       </div>
       <div class="row mb-3">
         <label for="reviewimage2" class="col-sm-2 col-form-label">reviewImage2: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="reviewimage2" name="reviewImages[]">
+          <input type="text" class="form-control" id="reviewimage2" name="reviewImages[]" value="<%= product.reviews.images[1] || '' %>">
         </div>
       </div>
       <div class="row mb-3">
         <label for="reviewimage3" class="col-sm-2 col-form-label">reviewImage3: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="reviewimage3" name="reviewImages[]">
+          <input type="text" class="form-control" id="reviewimage3" name="reviewImages[]" value="<%= product.reviews.images[2] || '' %>">
         </div>
       </div>
       <div class="row mb-3">
         <label for="reviewimage4" class="col-sm-2 col-form-label">reviewImage4: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="reviewimage4" name="reviewImages[]">
+          <input type="text" class="form-control" id="reviewimage4" name="reviewImages[]" value="<%= product.reviews.images[3] || '' %>">
         </div>
       </div>
       <div class="row mb-3">
         <label for="reviewimage5" class="col-sm-2 col-form-label">reviewImage5: </label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="reviewimage5" name="reviewImages[]">
+          <input type="text" class="form-control" id="reviewimage5" name="reviewImages[]" value="<%= product.reviews.images[4] || '' %>">
         </div>
       </div>
 
@@ -137,12 +138,12 @@
       <div class="row mb-3">
         <label for="reviewtext" class="col-sm-2 col-form-label">review texts: </label>
         <div class="col-sm-10">
-          <textarea class="form-control" id="reviewtext" name="reviewTexts" rows="7"> </textarea>
+          <textarea class="form-control" id="reviewtext" name="reviewTexts" rows="7"> <%= product.reviews.text.join('\n') %></textarea>
         </div>
       </div>
 
 
-    <button type="submit" class="btn btn-primary btn-lg">ADD</button>
+    <button type="submit" class="btn btn-primary btn-lg">Edit</button>
   </form>
 
 

@@ -11,7 +11,7 @@ module.exports.getRecommendedProducts = async(req, res)=>{
     }
     
     if(recommendedProducts.length > 0) {
-        
+        products = recommendedProducts;
     }else{
         products = false;
     }
