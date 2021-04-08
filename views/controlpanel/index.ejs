@@ -1,5 +1,15 @@
 <% layout('/layouts/boilerplate') -%>
     <a class="btn btn-danger ml-auto" href="/logout">Logout</a>
 <h1> control panel</h1>
-<a href="/controlpanel/addproduct" class="btn btn-primary">Add new product</a>
-<a href="/controlpanel/allproducts" class="btn btn-primary">show All products</a>
+<div class="row">
+    <div class="col-4 mt-3">
+        <a href="/controlpanel/addproduct" class="btn btn-success">Add new product</a>
+    </div>
+    <div class="col-4 mt-3">
+        <a href="/controlpanel/allproducts" class="btn btn-primary">show All products</a>
+    </div>
+    <div class="col-4 mt-3">
+        <a href="/controlpanel/scrapelazada/one" class="btn btn-primary lazada">scrape one product from lazada</a>
+    </div>
+</div>
+

@@ -9,7 +9,7 @@
                 <div class="carousel-inner">
                   <% product.images.forEach((img, i) => {%>
                     <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
-                      <img src="<%=img%>" class="d-block w-100" alt="...">
+                      <img src="<%=img%>" class="d-block w-100" alt="..." >
                     </div>
                     <% }) %>
                 </div>
@@ -33,8 +33,8 @@
             </div>
             <div class="rating-stars">
                 <div><span class="text-muted ml-5"><%= product.rating.number %> ratings</span></div>
-                <p class="starability-result d-inline-block" data-rating="<%=product.rating.stars%>">
-                    Rated: <%= product.rating.stars %> stars
+                <p class="starability-result d-inline-block" data-rating="<%=Math.round(product.rating.stars)%>">
+                    Rated: <%= Math.round(product.rating.stars) %> stars
                   </p>
             </div>
             <div class="reviews-numbers">

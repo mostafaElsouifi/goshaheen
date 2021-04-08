@@ -6,15 +6,15 @@
         <div class="col-md-4 col-lg-3 mb-3">
             <div class="card">
                 <span class="badge <%=product.store%>"><%=product.store%></span>
-                <img src="<%=product.images[0]%>" class="img-card-top">
+                <img style="height:250px;"  src="<%=product.images[0]%>" class="img-card-top">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item product-name fs-6"><%= product.name.slice(0, 50)%>
                     </li>
                     <li class="list-group-item product-price fs6"><%= product.price %>RM</li>
                     <li class="list-group-item product-rating">
                        
-                        <p class="starability-result d-inline-block" data-rating="<%=product.rating.stars%>">
-                            Rated: <%= product.rating.stars %> stars
+                        <p class="starability-result d-inline-block" data-rating="<%= Math.round(product.rating.stars)%>">
+                            Rated: <%= Math.round(product.rating.stars) %> stars
                           </p>
                           <span class="text-muted ml-5"><%= product.rating.number%> ratings</span>
                            

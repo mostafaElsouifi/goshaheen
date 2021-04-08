@@ -6,8 +6,10 @@ module.exports.getRecommendedProducts = async(req, res)=>{
         products = products.filter(p => p.rating.stars > 3);
         for(let i = 0; i < 40; i++){
             const random = Math.floor(Math.random() * products.length);
+            if(!recommendedProducts.includes(products[random])){
             recommendedProducts.push(products[random]);
         }
+    }
     }
     
     if(recommendedProducts.length > 0) {
@@ -15,5 +17,7 @@ module.exports.getRecommendedProducts = async(req, res)=>{
     }else{
         products = false;
     }
+    if(!products.includes(null)) products = false;
     res.render('home', {products, title: 'Best Products'});
+    
 }

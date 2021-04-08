@@ -1,4 +1,5 @@
 const Product = require('../models/product');
+const { scrapeOne } = require('../scrapingscripts/lazadaone');
 
 //control panel 
 module.exports.renderControlPanelPage = (req, res)=>{
@@ -71,4 +72,29 @@ module.exports.deleteProduct = async(req, res)=>{
     const deletedProduct = await Product.findByIdAndDelete(req.params.id);
     req.flash('success', `successfully deleted ${deletedProduct.name}`);
     res.redirect('/controlpanel')
+}
+
+// scrape 
+module.exports.renderScrapingOneForm = (req, res)=>{
+    res.render('controlpanel/scrape/one', {title: 'scrape one product fro lazda'});
+}
+
+module.exports.scrapeOne = async(req, res)=>{
+    const { url, affilliateLink} = req.body;
+    let data;
+    let scrapingDone = false;
+    while(!scrapingDone){
+        try{
+             data = await scrapeOne(url);
+             data.affilliateLink = affilliateLink;
+             data.store = 'lazada';
+            scrapingDone = true;
+        }catch(e){
+            scrapingDone = false;
+            console.log(e)
+        }
+    }
+    const product = new Product(data);
+    await product.save();
+    res.redirect(`/product/${product._id}`);
 }
