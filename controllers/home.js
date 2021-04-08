@@ -17,7 +17,7 @@ module.exports.getRecommendedProducts = async(req, res)=>{
     }else{
         products = false;
     }
-    if(!products.includes(null)) products = false;
+    if(products.includes(null)) products = false;
     res.render('home', {products, title: 'Best Products'});
     
 }
