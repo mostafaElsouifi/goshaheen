@@ -21,11 +21,5 @@ router.route('/product/:id')
       .delete(isLoggedIn, catchAsync(controlPanel.deleteProduct))
 
 
-// scraping route 
-router.route('/scrapelazada/one')
-      .get(isLoggedIn, controlPanel.renderScrapingOneForm)
-      .post(isLoggedIn, controlPanel.scrapeOne)
-
-
 
 module.exports = router;

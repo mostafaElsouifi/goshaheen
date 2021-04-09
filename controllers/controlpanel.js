@@ -96,5 +96,5 @@ module.exports.scrapeOne = async(req, res)=>{
     }
     const product = new Product(data);
     await product.save();
-    res.redirect(`/product/${product._id}`);
+    res.redirect(`/controlpanel/scrapelazada/one`);
 }
