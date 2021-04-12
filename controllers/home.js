@@ -2,7 +2,7 @@ const Product = require('../models/product');
 module.exports.getRecommendedProducts = async(req, res)=>{
     const recommendedProducts = [];
     let products = await Product.find({})
-    const productsNumber = products.length;
+    // const productsNumber = products.length;
     if(products){
         products = products.filter(p => p.rating.stars > 3);
         for(let i = 0; i < 40; i++){
@@ -19,6 +19,6 @@ module.exports.getRecommendedProducts = async(req, res)=>{
         products = false;
     }
     if(products.includes(null)) products = false;
-    res.render('home', {products, productsNumber, title: 'Best Products'});
+    res.render('home', {products, title: 'Best Products'});
     
 }
