@@ -7,7 +7,7 @@ module.exports.renderControlPanelPage = (req, res)=>{
 // show all products 
 
 module.exports.showAllProducts = async(req, res)=>{
-    const products = await Product.find({})
+    const products = await Product.find({});
     res.render('home', {products, title: 'Best Products'});
 }
 
