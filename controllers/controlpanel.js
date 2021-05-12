@@ -1,4 +1,4 @@
-const Product = require('../models/product');
+const { MYProduct } = require('../models/product');
 //control panel 
 module.exports.renderControlPanelPage = (req, res)=>{
     res.render('controlpanel', {title: 'control panel'})
@@ -7,7 +7,7 @@ module.exports.renderControlPanelPage = (req, res)=>{
 // show all products 
 
 module.exports.showAllProducts = async(req, res)=>{
-    const products = await Product.find({});
+    const products = await MYProduct.find({});
     res.render('home', {products, title: 'Best Products'});
 }
 
@@ -26,7 +26,7 @@ module.exports.addNewProduct = async(req, res)=>{
     reviewImages = reviewImages.filter(img => img !== '');
     reviewTexts = reviewTexts.split('\n');
     price = +price;
-    const product = new Product({name, category, price, images, details, video, store, affilliateLink});
+    const product = new MYProduct({name, category, price, images, details, video, store, affilliateLink});
     product.reviews.text = reviewTexts;
     product.reviews.images = reviewImages;
     product.rating.number = rating[0];
@@ -40,7 +40,7 @@ module.exports.addNewProduct = async(req, res)=>{
 
 // render edit product form  
 module.exports.renderEditForm = async(req, res)=>{
-    const product = await Product.findById(req.params.id);
+    const product = await MYProduct.findById(req.params.id);
     res.render('controlpanel/editproduct', { product , title: `Edit ${product.name}` });
 }
 
@@ -53,7 +53,7 @@ module.exports.updateProduct = async(req, res) => {
     reviewImages = reviewImages.filter(img => img !== '');
     reviewTexts = reviewTexts.split('\n');
     price = +price;
-    const updatedProduct = await Product.findByIdAndUpdate(id, {name, category, price, images, details, video, store, affilliateLink});
+    const updatedProduct = await MYProduct.findByIdAndUpdate(id, {name, category, price, images, details, video, store, affilliateLink});
     updatedProduct.reviews.text = reviewTexts;
     updatedProduct.reviews.images = reviewImages;
     updatedProduct.rating.number = rating[0];
@@ -67,7 +67,7 @@ module.exports.updateProduct = async(req, res) => {
 
 // delete product
 module.exports.deleteProduct = async(req, res)=>{
-    const deletedProduct = await Product.findByIdAndDelete(req.params.id);
+    const deletedProduct = await MYProduct.findByIdAndDelete(req.params.id);
     req.flash('success', `successfully deleted ${deletedProduct.name}`);
     res.redirect('/controlpanel')
 }

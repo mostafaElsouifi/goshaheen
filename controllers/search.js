@@ -1,4 +1,4 @@
-const Product = require('../models/product');
+const { MYProduct } = require('../models/product');
 const sanitizeHtml = require('sanitize-html');
 
 
@@ -7,7 +7,7 @@ module.exports.searchProduct = async(req, res)=>{
         searchInput = sanitizeHtml(searchInput);
         searchInput = searchInput.replace('$', '_'); // to prevenet mongo injection 
         if(!searchInput) return res.redirect('/');
-        const products = await Product.find({$text: {$search  : searchInput}});
+        const products = await MYProduct.find({$text: {$search  : searchInput}});
         if(!products.length){
             return res.render('home', {products:false,title: 'no products found'})
         }
