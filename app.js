@@ -1,7 +1,7 @@
 if(process.env.NODE_ENV !== 'production'){
     require('dotenv').config();
 }
-
+const  getCountry  = require('./utils/getCountry');
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -103,7 +103,8 @@ app.use(helmet.contentSecurityPolicy({
             "blob:",
             "data:",
             "http://my-test-11.slatic.net/",
-            "https://sg-test-11.slatic.net/"
+            "https://sg-test-11.slatic.net/",
+            "https://images-na.ssl-images-amazon.com/"
         ],
         fontSrc: ["'self'", ...fontSrcUrls],
     }
@@ -123,8 +124,16 @@ app.use((req, res, next)=>{
     res.locals.error = req.flash('error');
 
     next();
-})
+});
 
+app.use(async (req, res, next)=>{
+    const country = await getCountry();
+    res.locals.country = country;
+    if(country !== 'Saudi Arabia' && country !== 'Malaysia'){
+        next(new ExpressError('country not available'))
+    }
+    next();
+})
 
 // include routes 
 app.use('/', homeRouter);
@@ -142,7 +151,7 @@ app.all('*', (req, res, next)=>{
 app.use((err, req, res, next)=>{
     const { statusCode = 500 } = err;
     if(!err.message) err.message = 'something went wrong';
-    res.status(statusCode).render('error', { err, title: err.message }) 
+    res.status(statusCode).render('error', { err, title: err.message })
 })
 // the port is be sitten by heroku if we are in development mode we will use 3000
 const port = process.env.PORT || 3000

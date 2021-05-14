@@ -29,7 +29,7 @@
           </div>
             
             <div class="product-price">
-                <span><%= product.price %>RM</span>
+                <span><%= product.price %> <%= country === 'Saudi Arabia'? 'SAR' : 'RM' %></span>
             </div>
             <div class="rating-stars">
                 <div><span class="text-muted ml-5"><%= product.rating.number %> ratings</span></div>
