@@ -133,7 +133,7 @@ app.use(async (req, res, next)=>{
     const result = await getData.json();
     res.locals.country = country;
     if(country !== 'Saudi Arabia' && country !== 'Malaysia'){
-        next(new ExpressError(`'${result.country} / ${result.ip} / ${req.ip} not available`))
+        next(new ExpressError(`'${result.country_name} / ${result.ip} / ${req.ip} not available`))
     }
     next();
 })
