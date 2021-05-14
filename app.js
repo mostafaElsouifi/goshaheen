@@ -129,11 +129,9 @@ app.use((req, res, next)=>{
 
 app.use(async (req, res, next)=>{
     const country = await getCountry();
-    const getData = await fetch(`http://api.ipstack.com/${req.ip}?access_key=${process.env.IPSTACK_KEY}`);
-    const result = await getData.json();
     res.locals.country = country;
     if(country !== 'Saudi Arabia' && country !== 'Malaysia'){
-        next(new ExpressError(`'${result.country_name} / ${result.ip} / ${req.ip} not available`))
+        next(new ExpressError(`'${country} is not available`))
     }
     next();
 })
