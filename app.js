@@ -1,6 +1,7 @@
 if(process.env.NODE_ENV !== 'production'){
     require('dotenv').config();
 }
+const fetch = require('node-fetch');
 const  getCountry  = require('./utils/getCountry');
 const express = require('express');
 const app = express();
@@ -128,9 +129,11 @@ app.use((req, res, next)=>{
 
 app.use(async (req, res, next)=>{
     const country = await getCountry();
+    const getData = await fetch(`http://api.ipstack.com/check?access_key=${process.env.IPSTACK_KEY}`);
+    const result = await getData.json();
     res.locals.country = country;
-    if(country !== 'Saudi Arabia' && country !== 'Malaysia'){
-        next(new ExpressError(`'${country} / ${req.ip} not available`))
+    if(country == 'Saudi Arabia' || country == 'Malaysia'){
+        next(new ExpressError(`'${country} / ${result.ip} / ${req.ip} not available`))
     }
     next();
 })
