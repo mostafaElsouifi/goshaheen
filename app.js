@@ -1,8 +1,6 @@
 if(process.env.NODE_ENV !== 'production'){
     require('dotenv').config();
 }
-const fetch = require('node-fetch');
-const  getCountry  = require('./utils/getCountry');
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -127,14 +125,6 @@ app.use((req, res, next)=>{
     next();
 });
 
-app.use(async (req, res, next)=>{
-    const country = await getCountry();
-    res.locals.country = country;
-    if(country !== 'Saudi Arabia' && country !== 'Malaysia'){
-        next(new ExpressError(`'${country} is not available`))
-    }
-    next();
-})
 
 // include routes 
 app.use('/', homeRouter);

@@ -1,13 +1,9 @@
 const { MYProduct, SAProduct } = require('../models/product');
-const  getCountry  = require('../utils/getCountry');
 
 module.exports.getRecommendedProducts = async(req, res)=>{
-    let products;
-    const country = await getCountry();
     const recommendedProducts = [];
-    if(country === 'Saudi Arabia'){
-        products = await SAProduct.find({});
-    }
+    let products = await MYProduct.find({});
+
     //let products = await product.find({});
     if(products){
         products = products.filter(p => p.rating.stars > 3);
