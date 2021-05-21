@@ -10,7 +10,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item product-name fs-6"><%= product.name.slice(0, 50)%>
                     </li>
-                    <li class="list-group-item product-price fs6"><%= product.price %>RM</li>
+                    <li class="list-group-item product-price fs6"><%= product.price %> <%= currency %></li>
                     <li class="list-group-item product-rating">
                        
                         <p class="starability-result d-inline-block" data-rating="<%= Math.round(product.rating.stars)%>">
@@ -21,7 +21,7 @@
                     </li>
                     <li class="list-group-item text-muted product-reviews"><%= product.reviews.text.length%> reviews</li>
                   </ul>
-                  <a href="/product/<%=product._id%>?name=<%=product.name.replace(' ', '-')%>&cat=<%= product.category%>" class="btn btn-success">Get details & buy</a>
+                  <a id="product-details" href="/product/<%=product._id%>?name=<%=product.name.replace(' ', '-')%>&cat=<%= product.category%>" class="btn btn-success">Get details & buy</a>
                 
             </div>
             
@@ -35,3 +35,13 @@
               <%}%>
     </div>
 </div>
+<script>
+    path = window.location.pathname;
+    let productsLinks = document.querySelectorAll('#product-details');
+    for(let i = 0; i < productsLinks.length; i++){
+        productsLinks[i].href = productsLinks[i].href.replace('/product', `${path}/product`);
+        productsLinks[i].href = productsLinks[i].href.replace('/search', ``);
+        productsLinks[i].href = productsLinks[i].href.replace('/controlpanel/allproducts', ``);
+    }
+   
+</script>

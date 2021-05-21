@@ -1,7 +1,7 @@
 <% layout('/layouts/boilerplate') -%>
 
 <h1 class="text-center">Add new Product</h1>
-<form action="/controlpanel/addproduct" method="POST" class="m-3">
+<form method="POST" class="m-3">
     <div class="row mb-3">
       <label for="name" class="col-sm-2 col-form-label">name: </label>
       <div class="col-sm-10">
@@ -144,6 +144,9 @@
 
     <button type="submit" class="btn btn-primary btn-lg">ADD</button>
   </form>
-
+  <script>
+    path = window.location.pathname;
+    document.querySelector('form').setAttribute('action', `${path}`)
+  </script>
 
   

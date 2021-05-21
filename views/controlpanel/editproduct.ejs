@@ -2,7 +2,7 @@
 
 
 <h1 class="text-center">Edit Product</h1>
-<form action="/controlpanel/product/<%= product._id %>?_method=PUT" method="POST" class="m-3">
+<form id="edit-form" method="POST" class="m-3">
     <div class="row mb-3">
       <label for="name" class="col-sm-2 col-form-label">name: </label>
       <div class="col-sm-10">
@@ -145,6 +145,10 @@
 
     <button type="submit" class="btn btn-primary btn-lg">Edit</button>
   </form>
-
+  <script>
+  path = window.location.pathname;
+  path = path.replace('/edit', '');
+  document.querySelector('#edit-form').setAttribute('action', `${path}?_method=PUT`)
+  </script>
 
   

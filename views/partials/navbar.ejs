@@ -1,4 +1,3 @@
-
 <div class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand brand" href="/">GoShaheen</a>
@@ -6,12 +5,18 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="collapseContent">
-        <form action="/search" method="POST" class="d-flex mx-auto">
+        <form method="POST" class="d-flex mx-auto">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search-input" name="searchInput">
             <button class="btn btn-secondary search-btn" type="submit">Search</button>
           </form>
-          <a class="btn btn-secondary mt-0 mt-sm-2" href="/">View other offers</a>
+          <a class="btn btn-secondary mt-0 mt-sm-2" id="random-offers" href="/">View other offers</a>
       </div>
      
       </div>
 </div>
+<script>
+  // search button
+  let path = window.location.pathname;
+  document.querySelector('form').setAttribute("action", `${path.replace('/search', '')}/search`);
+
+</script>

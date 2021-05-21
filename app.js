@@ -14,11 +14,11 @@ const helmet = require('helmet');
 const passport = require('passport');
 const localStrategy = require('passport-local');
 const ExpressError = require('./utils/ExpressError');
+
+const myRouter = require('./routes/my');
+const saRouter = require('./routes/sa');
 const homeRouter = require('./routes/home');
-const productRouter = require('./routes/product');
 const userRouter = require('./routes/user');
-const searchRouter = require('./routes/search');
-const controlPanelRouter = require('./routes/controlpanel');
 const User = require('./models/user');
 const MongoDBStore = require('connect-mongo')(session);
 
@@ -77,7 +77,10 @@ app.use(helmet());
 
 const scriptSrcUrls = [
     "https://stackpath.bootstrapcdn.com/",
-    "https://cdn.jsdelivr.net/"
+    "https://cdn.jsdelivr.net/",
+    "https://www.googletagmanager.com/",
+    "https://www.google-analytics.com/",
+    "http://api.ipstack.com/check"
 ];
 const styleSrcUrls = [
     "https://stackpath.bootstrapcdn.com/",
@@ -92,7 +95,7 @@ const fontSrcUrls = [
 app.use(helmet.contentSecurityPolicy({
     directives: {
         defaultSrc: ["https://www.youtube.com/"],
-        connectSrc: ["'self'"],
+        connectSrc: ["'self'", ...scriptSrcUrls],
         scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
         styleSrc: ["'self'", "'unsafe-inline'",  ...styleSrcUrls],
         workerSrc: ["'self'", "blob:"],
@@ -103,7 +106,9 @@ app.use(helmet.contentSecurityPolicy({
             "data:",
             "http://my-test-11.slatic.net/",
             "https://sg-test-11.slatic.net/",
-            "https://images-na.ssl-images-amazon.com/"
+            "https://images-na.ssl-images-amazon.com/",
+            "https://www.google-analytics.com/collect"
+            
         ],
         fontSrc: ["'self'", ...fontSrcUrls],
     }
@@ -126,12 +131,12 @@ app.use((req, res, next)=>{
 });
 
 
-// include routes 
+// include routes
+app.use('/my', myRouter);
+app.use('/sa', saRouter);
 app.use('/', homeRouter);
-app.use('/product', productRouter);
 app.use('/', userRouter);
-app.use('/search', searchRouter);
-app.use('/controlpanel', controlPanelRouter)
+
 
 
 

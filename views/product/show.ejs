@@ -9,7 +9,7 @@
                 <div class="carousel-inner">
                   <% product.images.forEach((img, i) => {%>
                     <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
-                      <img src="<%=img%>" class="d-block w-100" alt="..." >
+                      <img src="<%=img%>" class="d-block w-100" style="height:30rem" alt="..." >
                     </div>
                     <% }) %>
                 </div>
@@ -29,7 +29,7 @@
           </div>
             
             <div class="product-price">
-                <span><%= product.price %> RM</span>
+                <span><%= product.price %> <%= currency %></span>
             </div>
             <div class="rating-stars">
                 <div><span class="text-muted ml-5"><%= product.rating.number %> ratings</span></div>
@@ -108,12 +108,22 @@
           <%- product.video %>
         </div>
         <% if(currentUser){%>
-        <form action="/controlpanel/product/<%=product._id%>?_method=DELETE" method="POST" class="m-3">
+        <form id="delete-from" method="POST" class="m-3">
           <button class="btn btn-danger btn-lg">Delete</button>
         </form>
-          <a href="/controlpanel/product/<%=product._id%>/edit" class="btn btn-warning">Edit</a>
+          <a id="edit-btn" href="/controlpanel/product/<%=product._id%>/edit" class="btn btn-warning">Edit</a>
         <% } %>
        
     </section>
 
 </div>
+<script>
+   path = window.location.pathname;
+   path = path.replace('/product', '/controlpanel/product');
+  // delete
+  document.querySelector('#delete-from').setAttribute('action', `${path}?_method=DELETE`)
+  //edit 
+   document.querySelector('#edit-btn').href = `${path}/edit`;
+
+
+</script>
