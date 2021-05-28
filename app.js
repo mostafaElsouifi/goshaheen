@@ -17,6 +17,7 @@ const ExpressError = require('./utils/ExpressError');
 
 const myRouter = require('./routes/my');
 const saRouter = require('./routes/sa');
+const usRouter = require('./routes/us');
 const homeRouter = require('./routes/home');
 const userRouter = require('./routes/user');
 const User = require('./models/user');
@@ -134,6 +135,7 @@ app.use((req, res, next)=>{
 // include routes
 app.use('/my', myRouter);
 app.use('/sa', saRouter);
+app.use('/us', usRouter);
 app.use('/', homeRouter);
 app.use('/', userRouter);
 

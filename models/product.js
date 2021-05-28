@@ -58,3 +58,4 @@ const productSchema = new Schema({
 productSchema.index({name: 'text'})
 module.exports.SAProduct = mongoose.model('SAProduct', productSchema);
 module.exports.MYProduct  = mongoose.model('MYProduct', productSchema);
+module.exports.USProduct = mongoose.model('USProduct', productSchema);

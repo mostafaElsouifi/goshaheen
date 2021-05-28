@@ -7,6 +7,9 @@ const getCountry = async()=>{
     if(!window.location.href.includes('/sa') && result.country_name === 'Saudi Arabia' && window.location.pathname === '/'){
         window.location.href = '/sa';
     }
+    if(!window.location.href.includes('/us') && result.country_name === 'United States' && window.location.pathname === '/'){
+        window.location.href = '/us';
+    }
    
 }
 
