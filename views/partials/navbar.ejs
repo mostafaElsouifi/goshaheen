@@ -17,6 +17,9 @@
 <script>
   // search button
   let path = window.location.pathname;
+  // if the search in product page 
+  let removedString = path.substr(3);
+  path = path.replace(removedString, '');
   document.querySelector('form').setAttribute("action", `${path.replace('/search', '')}/search`);
 
 </script>
