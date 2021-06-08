@@ -6,7 +6,7 @@
         <div class="col-md-4 col-lg-3 mb-3">
             <div class="card">
                 <span class="badge <%=product.store%>"><%=product.store%></span>
-                <img style="height:250px;"  src="<%=product.images[0]%>" class="img-card-top">
+                <img style="height:250px;"  src="<%=product.images[0]%>" class="img-card-top" alt="image of <%= product.name %>">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item product-name fs-6"><%= product.name.slice(0, 50)%>
                     </li>
