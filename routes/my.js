@@ -23,5 +23,24 @@ router.get('/controlpanel/product/:id/edit', isLoggedIn, my.renderEditForm);
 router.route('/controlpanel/product/:id')
       .delete(isLoggedIn, catchAsync(my.deleteProduct))
       .put(isLoggedIn, catchAsync(my.updateProduct));
+
+// articel 
+router.route('/controlpanel/blog/addarticle')
+      .get(isLoggedIn, my.renderAddArticle)
+      .post(isLoggedIn, catchAsync(my.addArticle));
+
+// render edit article form  and update 
+router.route('/controlpanel/blog/:id/edit')
+      .get(catchAsync(my.renderEditArticleForm))
+      .post(catchAsync(my.editArticle));
+// delete article 
+router.delete('/controlpanel/blog/:id', catchAsync(my.deleteArticle))
+
+
+// blog
+router.get('/blog', catchAsync(my.renderBlogPage));
+router.route('/blog/:id')
+      .get(catchAsync(my.renderPostPage))
+
       
 module.exports = router;

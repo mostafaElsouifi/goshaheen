@@ -1,4 +1,5 @@
 const { SAProduct } = require('../models/product');
+const { SaArticle } = require('../models/article');
 const sanitizeHtml = require('sanitize-html');
 const ExpressError = require('../utils/ExpressError');
 
@@ -23,7 +24,7 @@ module.exports.renderHomePage = async(req, res)=>{
         products = false;
     }
     if(products.includes(null)) products = false;
-    res.render('home', {products, title: 'Best Products', currency: 'SAR'});
+    res.render('arhome', {products, title: 'أفضل العروض', currency: 'ريال', article:false});
 }
 
 
@@ -38,7 +39,7 @@ module.exports.search = async(req, res)=>{
     if(!products.length){
         return res.render('home', {products:false,title: 'no products found'})
     }
-    res.render('home', {products, title: searchInput, currency: 'SAR'});
+    res.render('arhome', {products, title: searchInput, currency: 'ريال', article:false});
     
 } 
 
@@ -47,7 +48,7 @@ module.exports.renderProductPage = async(req,res, next)=>{
     try{
         const { id } = req.params;
         const product = await SAProduct.findById(id);
-        res.render('product/show', {product, title: product.name, currency: 'SAR'});
+        res.render('product/arshow', {product, title: product.name, currency: 'ريال'});
     }catch(e){
         next(new ExpressError('product not found'))
     }
@@ -65,7 +66,7 @@ module.exports.renderControlPanelPage = (req, res)=>{
 // get all products  /sa/controlpanel/allproductss
 module.exports.allProducts = async(req, res)=>{
     const products = await SAProduct.find({});
-    res.render('home', {products, title: 'Best Products', currency: 'SAR'});
+    res.render('home', {products, title: 'Best Products', currency: 'ريال'});
 }
 
 
@@ -123,4 +124,61 @@ module.exports.deleteProduct = async(req, res)=>{
     const deletedProduct = await SAProduct.findByIdAndDelete(req.params.id);
     req.flash('success', `successfully deleted ${deletedProduct.name}`);
     res.redirect('/sa/controlpanel')
+}
+//////////////////////////////////////////////////
+/////////////article ////////////////////
+
+// render add new article form 
+module.exports.renderAddArticle = (req, res)=>{
+    res.render('controlpanel/addararticle', {title: 'كتابه مقال جديد', article:false});
+}
+// add article 
+module.exports.addArticle = async(req, res)=>{
+    const author = req.user._id;
+    const { heading, mainImage, affilliateLink, buttonText, mainContent, video } = req.body;
+    const article = req.body.content;
+    const newArticle = new SaArticle({ heading, mainContent, mainImage, affilliateLink, buttonText, article, video, author});
+    await newArticle.save();
+    req.flash('success', `successfully added ${newArticle.heading} article`);
+    res.redirect(`/sa/blog/${newArticle._id}`);
+}
+// render edit article form 
+module.exports.renderEditArticleForm = async(req, res)=>{
+    const id = req.params.id;
+    const article = await SaArticle.findById(id);
+    res.render('controlpanel/editararticle', {article, title: 'تعديل المقال'})
+};
+
+// update article 
+module.exports.editArticle = async(req, res)=>{
+    const id = req.params.id;
+    const { heading, mainImage, affilliateLink, buttonText, mainContent, video } = req.body;
+    const article = req.body.content;
+    const updatedArticle = await SaArticle.findByIdAndUpdate(id, { heading, mainImage, affilliateLink, buttonText, mainContent, article, video });
+    await updatedArticle.save();
+    req.flash('success', `successfully updated ${updatedArticle.heading} article`);
+    res.redirect(`/sa/blog/${id}`);
+}
+
+// delete article 
+module.exports.deleteArticle = async(req, res)=>{
+    const id = req.params.id; 
+    const deletedArticle = await SaArticle.findByIdAndDelete(id);
+    req.flash('success', `successfully deleted ${deletedArticle.heading} article`);
+    res.redirect('/sa/blog');
+}
+///////////////////////////////////
+///////////////// BLOG ///////////////
+
+// render blog page 
+module.exports.renderBlogPage = async(req, res)=>{
+    const allArticles = await SaArticle.find();
+    res.render('arblog/index', {allArticles, title: 'المقالات', article:false});
+}
+
+// render show post 
+module.exports.renderPostPage = async(req, res)=>{
+    const id = req.params.id;
+    const article = await SaArticle.findById(id);
+    res.render('arblog/post', {article, title: `${article.heading}`});
 }

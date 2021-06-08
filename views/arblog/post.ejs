@@ -1,0 +1,41 @@
+<% layout('/layouts/arboilerplate') -%>
+
+<div class="container post">
+    <div class="row">
+        <h1 class="mb-5"><%= article.heading  %> </h1>
+        <div class="col-md-8 col-8">
+       
+            <p>
+                <%= article.mainContent %>
+            </p>
+            <img class="mb-5" style="max-width:100%; height:300px" src="<%= article.mainImage %>" alt="">
+            <% for(let i = 0; i < article.article.length; i+= 2) { %>
+                <h2><%= article.article[i] %></h2>
+                <p> <%= article.article[i+1]%></p>
+            <% } %>
+
+        </div>
+    <div class="col-md-4 col-2">
+        <a id="post-affilliate-link" href="<%= article.affilliateLink %>" class="btn mb-3"> <%= article.buttonText %></a>
+    </div>
+    <div class="col-md-6 col-12">
+        <%- article.video %>
+      </div>
+    <% if(currentUser){%>
+        <form id="delete-from" method="POST" class="m-3">
+          <button class="btn btn-danger btn-lg">Delete</button>
+        </form>
+          <a id="edit-btn" href="/controlpanel/blog/<%=article._id%>/edit" class="btn btn-warning">Edit</a>
+        <% } %>
+</div>
+</div>
+<script>
+    path = window.location.pathname;
+    path = path.replace('/blog', '/controlpanel/blog');
+   // delete
+   document.querySelector('#delete-from').setAttribute('action', `${path}?_method=DELETE`)
+   //edit 
+    document.querySelector('#edit-btn').href = `${path}/edit`;
+ 
+ 
+ </script>

@@ -1,4 +1,5 @@
 const { USProduct } = require('../models/product');
+const { UsArticle } = require('../models/article');
 const sanitizeHtml = require('sanitize-html');
 const ExpressError = require('../utils/ExpressError');
 
@@ -123,4 +124,62 @@ module.exports.deleteProduct = async(req, res)=>{
     const deletedProduct = await USProduct.findByIdAndDelete(req.params.id);
     req.flash('success', `successfully deleted ${deletedProduct.name}`);
     res.redirect('/us/controlpanel')
+}
+
+//////////////////////////////////////////////////
+/////////////article ////////////////////
+
+// render add new article form 
+module.exports.renderAddArticle = (req, res)=>{
+    res.render('controlpanel/addenarticle', {title: 'Add new Article', article:false});
+}
+// add article 
+module.exports.addArticle = async(req, res)=>{
+    const author = req.user._id;
+    const { heading, mainImage, affilliateLink, buttonText, mainContent, video } = req.body;
+    const article = req.body.content;
+    const newArticle = new UsArticle({ heading, mainContent, mainImage, affilliateLink, buttonText, article, video, author});
+    await newArticle.save();
+    req.flash('success', `successfully added ${newArticle.heading} article`);
+    res.redirect(`/us/blog/${newArticle._id}`);
+}
+// render edit article form 
+module.exports.renderEditArticleForm = async(req, res)=>{
+    const id = req.params.id;
+    const article = await UsArticle.findById(id);
+    res.render('controlpanel/editenarticle', {article, title: 'Edit Article'})
+};
+
+// update article 
+module.exports.editArticle = async(req, res)=>{
+    const id = req.params.id;
+    const { heading, mainImage, affilliateLink, buttonText, mainContent, video } = req.body;
+    const article = req.body.content;
+    const updatedArticle = await UsArticle.findByIdAndUpdate(id, { heading, mainImage, affilliateLink, buttonText, mainContent, article, video });
+    await updatedArticle.save();
+    req.flash('success', `successfully updated ${updatedArticle.heading} article`);
+    res.redirect(`/us/blog/${id}`);
+}
+
+// delete article 
+module.exports.deleteArticle = async(req, res)=>{
+    const id = req.params.id; 
+    const deletedArticle = await UsArticle.findByIdAndDelete(id);
+    req.flash('success', `successfully deleted ${deletedArticle.heading} article`);
+    res.redirect('/us/blog');
+}
+///////////////////////////////////
+///////////////// BLOG ///////////////
+
+// render blog page 
+module.exports.renderBlogPage = async(req, res)=>{
+    const allArticles = await UsArticle.find();
+    res.render('enblog/index', {allArticles, title: 'Blog', article:false});
+}
+
+// render show post 
+module.exports.renderPostPage = async(req, res)=>{
+    const id = req.params.id;
+    const article = await UsArticle.findById(id);
+    res.render('enblog/post', {article, title: `${article.heading}`});
 }

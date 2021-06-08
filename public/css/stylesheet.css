@@ -26,11 +26,26 @@
 .search-btn{
     width:6rem;
 }
-.products-number{
-    font-size:1.5rem;
-    color:white;
-    font-weight: 100;
-    opacity:0.5;
+
+#random-offers{
+    color: white;
+    font-size:1.2rem;
+}
+#random-offers:hover{
+    background: #0F2027;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+#blog-btn{
+    color: white;
+    font-size:1.2rem;
+}
+#blog-btn:hover{
+    background: #0F2027;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 /*******************************************************/
@@ -66,8 +81,49 @@
 
 
 
+/************************************************/
+/*************** article  *************************/
+.card-title{
+    font-weight:700;
+    color: brown;
+}
+#post-affilliate-link{
+    position: fixed;
+    font-size:1.4rem;
+    color:white;
+    font-weight:200;
+    background: #636363;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #a2ab58, #636363);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #a2ab58, #636363); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+#post-affilliate-link:hover{
+    font-weight: 700;
+}
+.post h1{
+    font-weight:400;
+    color: brown;
+}
 
-
+.post p{
+    font-size: 1.3rem;
+    color:grey;
+    font-weight: 700;
+}
+.post img{
+    width:50%;
+    margin: 15px 0;
+}
+.post h2{
+    color: steelblue;
+    font-weight: 600;
+}
+@media only screen and (max-width: 1000px){
+    iframe{
+        width:350px;
+        height: 200px
+    }
+}
 
 /******************************************************************************************/
 /******************************************************************************************/

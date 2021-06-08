@@ -1,0 +1,129 @@
+<% layout('./layouts/arshowProductBoilerplate') -%>
+
+
+
+<div class="container">
+    <section class="row my-5 d-flex justify-content-between">
+        <div class="col-md-4 col-12">
+            <div id="productImagesCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <% product.images.forEach((img, i) => {%>
+                    <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+                      <img src="<%=img%>" class="d-block w-100" style="height:30rem" alt="..." >
+                    </div>
+                    <% }) %>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#productImagesCarousel" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#productImagesCarousel" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+        </div>
+        <div class="col-md-6 col-12 text-center mw-50">
+          <div>
+            <p class="product-name fw-bolder"><%= product.name %></p>
+          </div>
+            
+            <div class="product-price">
+                <span><%= product.price %> <%= currency %></span>
+            </div>
+            <div class="rating-stars">
+                <div><span class="text-muted ml-5"><%= product.rating.number %> ratings</span></div>
+                <p class="starability-result d-inline-block" data-rating="<%=Math.round(product.rating.stars)%>">
+                    Rated: <%= Math.round(product.rating.stars) %> stars
+                  </p>
+            </div>
+            <div class="reviews-numbers">
+                <span><%= product.reviews.text.length %> reviews</span>
+            </div>
+            <a href="<%= product.affilliateLink%>" class="btn button <%=product.store%>">Buy From <%= product.store %></a>
+        </div>
+      </section>
+
+    <!-- product details sectio -->
+    <section class="row my-5 d-flex justify-content-around" style="direction: rtl;">
+            <h4 class="bg-secondary p-2 text-white">Product details: </h4>
+            <% for(detail of product.details){%>
+              <div class="col-6">
+                <p class="fw-bolder"> - <%= detail %></p>
+              </div>
+            <% } %>
+    </section>
+
+    <!-- Reviews section -->
+    <section class="row my-5 d-flex justify-content-between" style="direction: rtl;">
+        <h4 class="bg-secondary p-2 text-white">Reviews :</h4>
+        <div class="col-6 d-flex align-items-center">
+              <div id="reviewsTextsCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+              <% product.reviews.text.forEach((text, i)=>{%> 
+                    <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+                      <p class="review-text"><%= text %></p>
+                    </div>
+                 
+                <% }) %>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#reviewsTextsCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#reviewsTextsCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          
+            </div>
+            <div class="col-md-4 col-6">
+              <div id="reviewsImagesCarousel" class="carousel slide " data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <% product.reviews.images.forEach((img, i) => {%>
+                    <div class="carousel-item <%= i === 0 ? 'active': '' %>">
+                      <a href="<%= img %>" target="_blank" >
+                      <img src="<%= img %>" class="d-block5 w-100" alt="...">
+                      </a>
+                    </div>
+                    <% }) %>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#reviewsImagesCarousel" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#reviewsImagesCarousel" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+            </section>
+
+ 
+    <section class="row my-5 d-flex justify-content-around">
+        <h4 class="bg-secondary p-2 text-white"> Product's Video</h4>
+        <div class="col-md-6 col-12">
+          <%- product.video %>
+        </div>
+        <% if(currentUser){%>
+        <form id="delete-from" method="POST" class="m-3">
+          <button class="btn btn-danger btn-lg">Delete</button>
+        </form>
+          <a id="edit-btn" href="/controlpanel/product/<%=product._id%>/edit" class="btn btn-warning">Edit</a>
+        <% } %>
+       
+    </section>
+
+</div>
+<script>
+   path = window.location.pathname;
+   path = path.replace('/product', '/controlpanel/product');
+  // delete
+  document.querySelector('#delete-from').setAttribute('action', `${path}?_method=DELETE`)
+  //edit 
+   document.querySelector('#edit-btn').href = `${path}/edit`;
+
+
+</script>

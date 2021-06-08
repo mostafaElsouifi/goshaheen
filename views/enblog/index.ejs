@@ -1,0 +1,29 @@
+<% layout('/layouts/boilerplate') -%>
+
+<div class="container">
+  <% for(let article of allArticles){ %>
+    <div class="col-8">
+        <div class="card mb-3" style="max-width: 800px;">
+            <div class="row g-0">
+                <div class="col-lg-6 col-md-12">
+                    <img style="width:300px; height:200px;" src="<%= article.mainImage %>>" alt="...">
+                  </div>
+              <div class="col-lg-6 col-md-12">
+                <div class="card-body">
+                  <h5 class="card-title"><%= article.heading %></h5>
+                  <p class="card-text"><%= article.mainContent.slice(0, 150)%></p>
+                  <p class="card-text"><a class="btn btn-success article-link" href="/blog/<%= article._id %>?<%= article.heading %>">تصفح المقال >></a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <% } %>
+</div>
+<script>
+  path = window.location.pathname;
+  let allArticlesLinks = document.querySelectorAll('.article-link');
+  for(let i = 0; i < allArticlesLinks.length; i++){
+    allArticlesLinks[i].href = allArticlesLinks[i].href.replace('/blog', `${path}`)
+  }
+</script>

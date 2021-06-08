@@ -1,0 +1,110 @@
+<% layout('/layouts/boilerplate') -%>
+
+<h1 class="text-center">Edit Article </h1>
+<form class="m-3" method="post">
+    <div class="row mb-3">
+        <label for="heading" class="col-sm-2 col-form-label"> Main Heading : </label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="heading" name="heading" value="<%= article.heading %>">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="mainContent" class="col-sm-2 col-form-label"> Main Content : </label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="mainContent" name="mainContent" value="<%= article.mainContent%>">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="mainImage" class="col-sm-2 col-form-label"> Image : </label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="mainImage" name="mainImage" value="<%= article.mainImage %>">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="sub-heading1" class="col-sm-2 col-form-label"> Sub-Heading 1 : </label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="sub-heading1" name="content[]" value="<%= article.article[0] %>">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="content1" class="col-sm-2 col-form-label">Content : </label>
+        <div class="col-sm-10">
+            <textarea class="form-control" id="content1" name="content[]"><%= article.article[1]%></textarea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="sub-heading2" class="col-sm-2 col-form-label"> Sub-Heading 2 : </label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="sub-heading2" name="content[]" value="<%= article.article[2]%>">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="content2" class="col-sm-2 col-form-label"> Content : </label>
+        <div class="col-sm-10">
+            <textarea class="form-control" id="content2" name="content[]"><%= article.article[3]%></textarea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="sub-heading3" class="col-sm-2 col-form-label"> Sub-Heading 3 : </label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="sub-heading3" name="content[]" value="<%= article.article[4]%>">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="content3" class="col-sm-2 col-form-label"> Content : </label>
+        <div class="col-sm-10">
+            <textarea class="form-control" id="content3" name="content[]"><%= article.article[5]%></textarea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="sub-heading4" class="col-sm-2 col-form-label"> Sub-Heading 4 : </label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="sub-heading4" name="content[]" value="<%= article.article[6]%>">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="content4" class="col-sm-2 col-form-label"> Content : </label>
+        <div class="col-sm-10">
+            <textarea class="form-control" id="content4" name="content[]"><%= article.article[7]%></textarea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="sub-heading5" class="col-sm-2 col-form-label"> Sub-Heading 5 : </label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="sub-heading5" name="content[]" value="<%= article.article[8]%>">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="content5" class="col-sm-2 col-form-label"> Content : </label>
+        <div class="col-sm-10">
+            <textarea class="form-control" id="content5" name="content[]"><%= article.article[9]%></textarea>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="affilliateLink" class="col-sm-2 col-form-label">Affilliate Link  : </label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="affilliateLink" name="affilliateLink" value="<%= article.affilliateLink %>">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="video" class="col-sm-2 col-form-label">Video  : </label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="video" name="video" value="<%= article.video %>">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="buttonText" class="col-sm-2 col-form-label">Button Text  : </label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="buttonText" name="buttonText" value="<%= article.buttonText %>">
+        </div>
+    </div>
+    <button class="btn btn-success"> Update  </button>
+</form>
+<script>
+    path = window.location.pathname;
+    document.querySelector('form').setAttribute('action', `${path}`);
+</script>

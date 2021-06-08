@@ -108,7 +108,8 @@ app.use(helmet.contentSecurityPolicy({
             "http://my-test-11.slatic.net/",
             "https://sg-test-11.slatic.net/",
             "https://images-na.ssl-images-amazon.com/",
-            "https://www.google-analytics.com/collect"
+            "https://www.google-analytics.com/collect",
+            "https://images.unsplash.com/"
             
         ],
         fontSrc: ["'self'", ...fontSrcUrls],
