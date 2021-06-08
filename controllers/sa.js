@@ -24,7 +24,7 @@ module.exports.renderHomePage = async(req, res)=>{
         products = false;
     }
     if(products.includes(null)) products = false;
-    res.render('arhome', {products, title: 'أفضل العروض', currency: 'ريال', article:false});
+    res.render('arhome', {products, title: 'تصفح أفضل العروض في السعوديه', currency: 'ريال', article:false});
 }
 
 
