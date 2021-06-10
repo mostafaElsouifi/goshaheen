@@ -143,9 +143,9 @@ app.use('/', userRouter);
 
 
 
-app.all('*', (req, res, next)=>{
-    next(new ExpressError('Page not found', 404))
-});
+// app.all('*', (req, res, next)=>{
+//     next(new ExpressError('Page not found', 404))
+// });
 
 app.use((err, req, res, next)=>{
     const { statusCode = 500 } = err;
