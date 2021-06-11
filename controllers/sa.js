@@ -110,6 +110,7 @@ module.exports.updateProduct = async(req, res) => {
     reviewTexts = reviewTexts.split('\n');
     price = +price;
     const updatedProduct = await SAProduct.findByIdAndUpdate(id, {name, category, price, images, details, video, store, affilliateLink});
+    updatedProduct.reviews.text = reviewTexts;
     updatedProduct.reviews.images = reviewImages;
     updatedProduct.rating.number = rating[0];
     updatedProduct.rating.stars = rating[1];
