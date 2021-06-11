@@ -150,7 +150,7 @@ app.all('*', (req, res, next)=>{
 app.use((err, req, res, next)=>{
     const { statusCode = 500 } = err;
     if(!err.message) err.message = 'something went wrong';
-    res.status(statusCode).render('error', { err, title: err.message })
+    res.status(statusCode).render('error', { err, title: err.message, article:false })
 })
 // the port is be sitten by heroku if we are in development mode we will use 3000
 const port = process.env.PORT || 3000
