@@ -24,7 +24,7 @@ module.exports.renderHomePage = async(req, res)=>{
         products = false;
     }
     if(products.includes(null)) products = false;
-    res.render('home', {products, title: 'Best Products', currency: 'RM'});
+    res.render('home', {products, title: 'Best Products', currency: 'RM', article:false});
 }
 
 
@@ -39,7 +39,7 @@ module.exports.search = async(req, res)=>{
     if(!products.length){
         return res.render('home', {products:false,title: 'no products found'})
     }
-    res.render('home', {products, title: searchInput, currency: 'RM'});
+    res.render('home', {products, title: searchInput, currency: 'RM', article:false});
     
 } 
 
@@ -60,19 +60,19 @@ module.exports.renderProductPage = async(req,res, next)=>{
 
 // render control panel page   /my/controlpanel
 module.exports.renderControlPanelPage = (req, res)=>{
-    res.render('controlpanel', {title: 'MY|control panel'})
+    res.render('controlpanel', {title: 'MY|control panel', article:false})
 }
 
 // get all products  /my/controlpanel/allproductss
 module.exports.allProducts = async(req, res)=>{
     const products = await MYProduct.find({});
-    res.render('home', {products, title: 'Best Products', currency: 'RM'});
+    res.render('home', {products, title: 'Best Products', currency: 'RM', article:false});
 }
 
 
 // render add product form 
 module.exports.renderAddProductForm = (req, res)=>{
-    res.render('controlpanel/addproduct', {title: 'add new Product'})
+    res.render('controlpanel/addproduct', {title: 'add new Product', article:false})
 }
 
 // add new product  
@@ -97,7 +97,7 @@ module.exports.addNewProduct = async(req, res)=>{
 // render edit product form 
 module.exports.renderEditForm = async(req, res)=>{
     const product = await MYProduct.findById(req.params.id);
-    res.render('controlpanel/editproduct', { product , title: `Edit ${product.name}`});
+    res.render('controlpanel/editproduct', { product , title: `Edit ${product.name}`, article:false});
 }
 
 // update product 
@@ -136,9 +136,9 @@ module.exports.renderAddArticle = (req, res)=>{
 // add article 
 module.exports.addArticle = async(req, res)=>{
     const author = req.user._id;
-    const { heading, mainImage, affilliateLink, buttonText, mainContent, video } = req.body;
-    const article = req.body.content;
-    const newArticle = new MyArticle({ heading, mainContent, mainImage, affilliateLink, buttonText, article, video, author});
+    const { category, productLink, keywords, heading, mainImage, affilliateLink, buttonText, introduction, video } = req.body;
+    const content = req.body.content;
+    const newArticle = new MyArticle({ category, keywords, heading, introduction, mainImage, affilliateLink, productLink, buttonText, content, video, author});
     await newArticle.save();
     req.flash('success', `successfully added ${newArticle.heading} article`);
     res.redirect(`/my/blog/${newArticle._id}`);
@@ -153,9 +153,9 @@ module.exports.renderEditArticleForm = async(req, res)=>{
 // update article 
 module.exports.editArticle = async(req, res)=>{
     const id = req.params.id;
-    const { heading, mainImage, affilliateLink, buttonText, mainContent, video } = req.body;
-    const article = req.body.content;
-    const updatedArticle = await MyArticle.findByIdAndUpdate(id, { heading, mainImage, affilliateLink, buttonText, mainContent, article, video });
+    const { category, productLink, keywords, heading, mainImage, affilliateLink, buttonText, introduction, video } = req.body;
+    const content = req.body.content;
+    const updatedArticle = await MyArticle.findByIdAndUpdate(id, { category, keywords, productLink, heading, mainImage, affilliateLink, buttonText, introduction, content, video });
     await updatedArticle.save();
     req.flash('success', `successfully updated ${updatedArticle.heading} article`);
     res.redirect(`/my/blog/${id}`);

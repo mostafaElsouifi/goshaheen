@@ -6,12 +6,12 @@
         <div class="col-md-8 col-8">
        
             <p>
-                <%= article.mainContent %>
+                <%= article.introduction %>
             </p>
             <img class="mb-5" style="max-width:100%; height:300px" src="<%= article.mainImage %>" alt="">
-            <% for(let i = 0; i < article.article.length; i+= 2) { %>
-                <h2><%= article.article[i] %></h2>
-                <p> <%= article.article[i+1]%></p>
+            <% for(let i = 0; i < article.content.length; i+= 2) { %>
+                <h2><%= article.content[i] %></h2>
+                <p> <%= article.content[i+1]%></p>
             <% } %>
 
         </div>

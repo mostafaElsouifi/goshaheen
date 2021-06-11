@@ -24,7 +24,7 @@ module.exports.renderHomePage = async(req, res)=>{
         products = false;
     }
     if(products.includes(null)) products = false;
-    res.render('home', {products, title: 'Best Products', currency: 'USD'});
+    res.render('home', {products, title: 'Best Products', currency: 'USD', article:false});
 }
 
 
@@ -39,7 +39,7 @@ module.exports.search = async(req, res)=>{
     if(!products.length){
         return res.render('home', {products:false,title: 'no products found'})
     }
-    res.render('home', {products, title: searchInput, currency: 'USD'});
+    res.render('home', {products, title: searchInput, currency: 'USD', article:false});
     
 } 
 
@@ -48,7 +48,7 @@ module.exports.renderProductPage = async(req,res, next)=>{
     try{
         const { id } = req.params;
         const product = await USProduct.findById(id);
-        res.render('product/show', {product, title: product.name, currency: 'USD'});
+        res.render('product/show', {product, title: product.name, currency: 'USD', article:false});
     }catch(e){
         next(new ExpressError('product not found'))
     }
@@ -66,7 +66,7 @@ module.exports.renderControlPanelPage = (req, res)=>{
 // get all products  /sa/controlpanel/allproductss
 module.exports.allProducts = async(req, res)=>{
     const products = await USProduct.find({});
-    res.render('home', {products, title: 'Best Products', currency: 'USD'});
+    res.render('home', {products, title: 'Best Products', currency: 'USD', article:false});
 }
 
 
@@ -97,7 +97,7 @@ module.exports.addNewProduct = async(req, res)=>{
 // render edit product form 
 module.exports.renderEditForm = async(req, res)=>{
     const product = await USProduct.findById(req.params.id);
-    res.render('controlpanel/editproduct', { product , title: `Edit ${product.name}`});
+    res.render('controlpanel/editproduct', { product , title: `Edit ${product.name}`, article:false});
 }
 
 // update product 
@@ -136,9 +136,9 @@ module.exports.renderAddArticle = (req, res)=>{
 // add article 
 module.exports.addArticle = async(req, res)=>{
     const author = req.user._id;
-    const { heading, mainImage, affilliateLink, buttonText, mainContent, video } = req.body;
-    const article = req.body.content;
-    const newArticle = new UsArticle({ heading, mainContent, mainImage, affilliateLink, buttonText, article, video, author});
+    const { category, productLink, keywords, heading, mainImage, affilliateLink, buttonText, introduction, video } = req.body;
+    const content = req.body.content;
+    const newArticle = new UsArticle({ category, keywords, heading, introduction, mainImage, affilliateLink, productLink, buttonText, content, video, author});
     await newArticle.save();
     req.flash('success', `successfully added ${newArticle.heading} article`);
     res.redirect(`/us/blog/${newArticle._id}`);
@@ -153,9 +153,9 @@ module.exports.renderEditArticleForm = async(req, res)=>{
 // update article 
 module.exports.editArticle = async(req, res)=>{
     const id = req.params.id;
-    const { heading, mainImage, affilliateLink, buttonText, mainContent, video } = req.body;
-    const article = req.body.content;
-    const updatedArticle = await UsArticle.findByIdAndUpdate(id, { heading, mainImage, affilliateLink, buttonText, mainContent, article, video });
+    const { category, productLink, keywords, heading, mainImage, affilliateLink, buttonText, introduction, video } = req.body;
+    const content = req.body.content;
+    const updatedArticle = await UsArticle.findByIdAndUpdate(id, { category, productLink, heading, mainImage, affilliateLink, keywords, buttonText, introduction, content, video });
     await updatedArticle.save();
     req.flash('success', `successfully updated ${updatedArticle.heading} article`);
     res.redirect(`/us/blog/${id}`);

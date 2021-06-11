@@ -60,19 +60,19 @@ module.exports.renderProductPage = async(req,res, next)=>{
 
 // render control panel page   /my/controlpanel
 module.exports.renderControlPanelPage = (req, res)=>{
-    res.render('controlpanel', {title: 'SA|control panel'})
+    res.render('controlpanel', {title: 'SA|control panel', article:false})
 }
 
 // get all products  /sa/controlpanel/allproductss
 module.exports.allProducts = async(req, res)=>{
     const products = await SAProduct.find({});
-    res.render('home', {products, title: 'Best Products', currency: 'ريال'});
+    res.render('home', {products, title: 'Best Products', currency: 'ريال', article:false});
 }
 
 
 // render add product form 
 module.exports.renderAddProductForm = (req, res)=>{
-    res.render('controlpanel/addproduct', {title: 'add new Product'})
+    res.render('controlpanel/addproduct', {title: 'add new Product', article:false})
 }
 
 // add new product  
@@ -97,7 +97,7 @@ module.exports.addNewProduct = async(req, res)=>{
 // render edit product form 
 module.exports.renderEditForm = async(req, res)=>{
     const product = await SAProduct.findById(req.params.id);
-    res.render('controlpanel/editproduct', { product , title: `Edit ${product.name}`});
+    res.render('controlpanel/editproduct', { product , title: `Edit ${product.name}`, article:false});
 }
 
 // update product 
@@ -135,9 +135,9 @@ module.exports.renderAddArticle = (req, res)=>{
 // add article 
 module.exports.addArticle = async(req, res)=>{
     const author = req.user._id;
-    const { heading, mainImage, affilliateLink, buttonText, mainContent, video } = req.body;
-    const article = req.body.content;
-    const newArticle = new SaArticle({ heading, mainContent, mainImage, affilliateLink, buttonText, article, video, author});
+    const { category, productLink, keywords, heading, mainImage, affilliateLink, buttonText, introduction, video } = req.body;
+    const content = req.body.content;
+    const newArticle = new SaArticle({ category, keywords, heading, introduction, mainImage, affilliateLink, productLink, buttonText, content, video, author});
     await newArticle.save();
     req.flash('success', `successfully added ${newArticle.heading} article`);
     res.redirect(`/sa/blog/${newArticle._id}`);
@@ -152,9 +152,9 @@ module.exports.renderEditArticleForm = async(req, res)=>{
 // update article 
 module.exports.editArticle = async(req, res)=>{
     const id = req.params.id;
-    const { heading, mainImage, affilliateLink, buttonText, mainContent, video } = req.body;
-    const article = req.body.content;
-    const updatedArticle = await SaArticle.findByIdAndUpdate(id, { heading, mainImage, affilliateLink, buttonText, mainContent, article, video });
+    const { category, productLink, keywords, heading, mainImage, affilliateLink, buttonText, introduction, video } = req.body;
+    const content = req.body.content;
+    const updatedArticle = await SaArticle.findByIdAndUpdate(id, { category, keywords, heading, mainImage, affilliateLink, productLink, buttonText, introduction, content, video });
     await updatedArticle.save();
     req.flash('success', `successfully updated ${updatedArticle.heading} article`);
     res.redirect(`/sa/blog/${id}`);

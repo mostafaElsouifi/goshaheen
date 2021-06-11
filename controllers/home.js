@@ -23,5 +23,5 @@ module.exports.getRecommendedProducts = async(req, res, next)=>{
     // if(products.includes(null)) products = false;
     // next(new ExpressError('No Products For Your Country'));
     //  res.render('home', {products: false, title: 'Best Products'});
-    res.render('loading', { title: 'Goshaheen' })
+    res.render('loading', { title: 'Goshaheen', article:false })
 }

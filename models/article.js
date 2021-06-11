@@ -2,11 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const articleSchema = new Schema({
+    category: String,
+    keywords: String,
     heading: String,
-    mainContent: String,
+    introduction: String,
     mainImage: String,
-    article: [ String ],
+    content: [ String ],
     affilliateLink: String,
+    productLink: String,
     buttonText: String,
     video:String,
     author: {type: Schema.Types.ObjectId, ref: 'User'}
