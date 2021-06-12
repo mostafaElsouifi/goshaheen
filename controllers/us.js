@@ -72,7 +72,7 @@ module.exports.allProducts = async(req, res)=>{
 
 // render add product form 
 module.exports.renderAddProductForm = (req, res)=>{
-    res.render('controlpanel/addproduct', {title: 'add new Product'})
+    res.render('controlpanel/addproduct', {title: 'add new Product', article: false})
 }
 
 // add new product  
