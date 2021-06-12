@@ -19,7 +19,7 @@
         <a id="post-affilliate-link" href="<%= article.affilliateLink %>" class="btn mb-3"> <%= article.buttonText %></a>
     </div>
     <div class="col-md-6 col-12">
-        <%= article.video %>
+        <%- article.video %>
       </div>
     <% if(currentUser){%>
         <form id="delete-from" method="POST" class="m-3">
