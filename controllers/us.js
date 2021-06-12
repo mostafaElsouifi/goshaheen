@@ -60,7 +60,7 @@ module.exports.renderProductPage = async(req,res, next)=>{
 
 // render control panel page   /my/controlpanel
 module.exports.renderControlPanelPage = (req, res)=>{
-    res.render('controlpanel', {title: 'US|control panel'})
+    res.render('controlpanel', {title: 'US|control panel', article:false})
 }
 
 // get all products  /sa/controlpanel/allproductss
