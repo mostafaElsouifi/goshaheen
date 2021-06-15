@@ -12,6 +12,13 @@ const articleSchema = new Schema({
     productLink: String,
     buttonText: String,
     video:String,
+    // location :String,
+    // moreProducts:[
+    //     {
+    //         productLink: String,
+    //         affilliateLink: String
+    //     }
+    // ],
     author: {type: Schema.Types.ObjectId, ref: 'User'}
 });
 module.exports.SaArticle = mongoose.model('SaArticle', articleSchema);

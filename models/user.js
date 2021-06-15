@@ -8,6 +8,10 @@ const userSchema = new Schema({
         required: true,
         unique: true 
     }
+    // products : [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: ''
+    // }]
 })
 userSchema.plugin(passportLocalMongoose);
 
