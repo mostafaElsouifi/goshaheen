@@ -23,6 +23,9 @@ const userRouter = require('./routes/user');
 const User = require('./models/user');
 const MongoDBStore = require('connect-mongo')(session);
 
+// google adsnselinks for all countries to use in polices 
+const allGoogleAdsenseLinks = require('./utils/allgoogleadsenselinks');
+
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/goshaheen';
 // database connection /////////////////////////////////////////////
@@ -85,14 +88,10 @@ const scriptSrcUrls = [
     "https://pagead2.googlesyndication.com/",
     "https://pagead2.googlesyndication.com/",
     "https://partner.googleadservices.com/",
-    "https://adservice.google.com.sa/",
-    "https://adservice.google.com.my/",
-    "https://adservice.google.com.us/",
     "https://www.googletagservices.com/",
     "https://tpc.googlesyndication.com/",
     "https://adservice.google.com/",
-
-];
+].concat(allGoogleAdsenseLinks);
 const styleSrcUrls = [
     "https://stackpath.bootstrapcdn.com/",
     "https://fonts.googleapis.com/",
