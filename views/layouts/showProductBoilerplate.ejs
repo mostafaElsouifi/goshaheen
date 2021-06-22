@@ -33,8 +33,12 @@
 </head>
 <body class="d-flex flex-column vh-100">
     <%- include('../partials/navbar')%>
-    <main class="container mt-5">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <main class="">
+        
+        <%- include('../partials/flash') %>
+        <%- body -%>
+    </main class="mt-5">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- horizontal -->
         <ins class="adsbygoogle"
         style="display:block"
@@ -45,9 +49,6 @@
         <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-        <%- include('../partials/flash') %>
-        <%- body -%>
-    </main>
     <%- include('../partials/footer')%>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
