@@ -103,7 +103,7 @@ const fontSrcUrls = [
 
 app.use(helmet.contentSecurityPolicy({
     directives: {
-        defaultSrc: ["https://www.youtube.com/", "https://googleads.g.doubleclick.net/"],
+        defaultSrc: ["https://www.youtube.com/", "https://googleads.g.doubleclick.net/", "https://tpc.googlesyndication.com/", "https://www.google.com/"],
         connectSrc: ["'self'", ...scriptSrcUrls],
         scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
         styleSrc: ["'self'", "'unsafe-inline'",  ...styleSrcUrls],
