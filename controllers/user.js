@@ -3,7 +3,7 @@ const User = require('../models/user');
 
 // register  
 module.exports.renderRegisterFrom = (req, res)=>{
-    res.render('user/register', {title: 'Add user'});
+    res.render('user/register', {title: 'Add user', article: false});
 }
 
 module.exports.register = async(req, res)=>{
@@ -27,7 +27,7 @@ module.exports.renderLoginForm = (req, res)=>{
         req.flash('success', 'you alredy logged in');
         return res.redirect('/controlpanel');
     }
-    res.render('user/login', { title : 'login'});
+    res.render('user/login', { title : 'login', article: false});
 }
 
 module.exports.login = (req, res)=>{
