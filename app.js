@@ -86,6 +86,8 @@ const scriptSrcUrls = [
     "https://pagead2.googlesyndication.com/",
     "https://partner.googleadservices.com/",
     "https://adservice.google.com.sa/",
+    "https://adservice.google.com.my/",
+    "https://adservice.google.com.us/",
     "https://www.googletagservices.com/",
     "https://tpc.googlesyndication.com/",
     "https://adservice.google.com/",
