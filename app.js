@@ -82,7 +82,8 @@ const scriptSrcUrls = [
     "https://www.googletagmanager.com/",
     "https://www.google-analytics.com/",
     "http://api.ipstack.com/check",
-    "https://pagead2.googlesyndication.com/"
+    "https://pagead2.googlesyndication.com/",
+    "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
 ];
 const styleSrcUrls = [
     "https://stackpath.bootstrapcdn.com/",
@@ -96,7 +97,7 @@ const fontSrcUrls = [
 
 app.use(helmet.contentSecurityPolicy({
     directives: {
-        defaultSrc: ["https://www.youtube.com/"],
+        defaultSrc: ["https://www.youtube.com/", "https://googleads.g.doubleclick.net/"],
         connectSrc: ["'self'", ...scriptSrcUrls],
         scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
         styleSrc: ["'self'", "'unsafe-inline'",  ...styleSrcUrls],
@@ -111,6 +112,7 @@ app.use(helmet.contentSecurityPolicy({
             "https://images-na.ssl-images-amazon.com/",
             "https://www.google-analytics.com/collect",
             "https://pagead2.googlesyndication.com/",
+            "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
             "https://images.unsplash.com/"
             
         ],
