@@ -81,7 +81,8 @@ const scriptSrcUrls = [
     "https://cdn.jsdelivr.net/",
     "https://www.googletagmanager.com/",
     "https://www.google-analytics.com/",
-    "http://api.ipstack.com/check"
+    "http://api.ipstack.com/check",
+    "https://pagead2.googlesyndication.com/"
 ];
 const styleSrcUrls = [
     "https://stackpath.bootstrapcdn.com/",
@@ -109,6 +110,7 @@ app.use(helmet.contentSecurityPolicy({
             "https://sg-test-11.slatic.net/",
             "https://images-na.ssl-images-amazon.com/",
             "https://www.google-analytics.com/collect",
+            "https://pagead2.googlesyndication.com/",
             "https://images.unsplash.com/"
             
         ],
