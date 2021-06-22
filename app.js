@@ -83,7 +83,10 @@ const scriptSrcUrls = [
     "https://www.google-analytics.com/",
     "http://api.ipstack.com/check",
     "https://pagead2.googlesyndication.com/",
-    "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+    "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
+    "https://partner.googleadservices.com/gampad/cookie.js?domain=www.goshaheen.com&callback=_gfp_s_&client=ca-pub-4620334839867235",
+    "https://adservice.google.com.sa/adsid/integrator.js?domain=www.goshaheen.com",
+
 ];
 const styleSrcUrls = [
     "https://stackpath.bootstrapcdn.com/",
@@ -113,7 +116,8 @@ app.use(helmet.contentSecurityPolicy({
             "https://www.google-analytics.com/collect",
             "https://pagead2.googlesyndication.com/",
             "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
-            "https://images.unsplash.com/"
+            "https://images.unsplash.com/",
+            "http://pagead2.googlesyndication.com/pagead/"
             
         ],
         fontSrc: ["'self'", ...fontSrcUrls],
