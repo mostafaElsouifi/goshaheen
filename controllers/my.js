@@ -111,6 +111,7 @@ module.exports.updateProduct = async(req, res) => {
     price = +price;
     const updatedProduct = await MYProduct.findByIdAndUpdate(id, {name, category, price, images, details, video, store, affilliateLink});
     updatedProduct.reviews.images = reviewImages;
+    updatedProduct.reviews.text = reviewTexts;
     updatedProduct.rating.number = rating[0];
     updatedProduct.rating.stars = rating[1];
     await updatedProduct.save();
